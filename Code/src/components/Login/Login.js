@@ -65,11 +65,8 @@ class Login extends React.Component {
       }
       Auth.authenticateUser(user.user_id)
 
-      // Login successful!
-      // loading? confirmation message?
-
-      // redirect to app
-      this.props.history.push('/app');
+      // redirect to home
+      this.props.history.push('/home');
     }
   }
 

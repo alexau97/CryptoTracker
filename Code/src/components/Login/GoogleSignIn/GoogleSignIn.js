@@ -1,7 +1,11 @@
 /* global gapi */
 import React, { Component } from 'react';
+import { withRouter, BrowserRouter, Route, Redirect, browserHistory, Link } from 'react-router-dom';
 import classes from './GoogleSignIn.css';
 import Auth from '../Auth'
+import { createHashHistory } from 'history'
+export const history = createHashHistory()
+
 
 function getGapi(callback){
   var auth2 = gapi.auth2.getAuthInstance();
@@ -49,6 +53,8 @@ class GoogleSignIn extends React.Component {
       console.log('Image URL: ' + profile.getImageUrl());
       console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
       this.props.getUser(profile.getId(), profile.getName(), profile.getEmail())
+      alert("Redirect to home!!! (This is in GoogleSignIn.js, Idk how to redirect after authetication, history.push isnt working)");
+      history.push('/home');
   }
 
   render() {
