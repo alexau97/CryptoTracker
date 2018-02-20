@@ -54,7 +54,7 @@ class GoogleSignIn extends React.Component {
       console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
       this.props.getUser(profile.getId(), profile.getName(), profile.getEmail())
       alert("Redirect to home!!! (This is in GoogleSignIn.js, Idk how to redirect after authetication, history.push isnt working)");
-      history.push('/home');
+      //history.push('/home');
   }
 
   render() {
