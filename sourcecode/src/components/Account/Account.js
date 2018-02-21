@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Route, Switch, Link, withRouter } from 'react-router-dom';
-import classes from './Home.css';
+import { Route, Switch } from 'react-router-dom';
+import classes from './Account.css';
 import history from '../../history';
 
 
-function toAccount() {
-    history.push('/account');
+function toHome() {
+    history.push('/home');
 }
 
-class Home extends React.Component {
+class Account extends React.Component {
 
   render() {
 
@@ -20,12 +20,11 @@ class Home extends React.Component {
             </h2>
 
             <nav className={classes.navigation}>
-              <button className={classes.nav_button}>
+              <button onClick={toHome} className={classes.nav_button}>
                 Home
               </button>
 
-              <button onClick={toAccount} className={classes.nav_button}>
-
+              <button className={classes.nav_button}>
                 Account
               </button>
             </nav>
@@ -38,4 +37,4 @@ class Home extends React.Component {
 
 }
 
-export default Home;
+export default Account;
