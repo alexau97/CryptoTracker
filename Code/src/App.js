@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import LandingPage from './components/LandingPage/LandingPage';
-import Home from './components/Home/Home';
+
 import Application from './components/Application';
 
 import { Route, Switch } from 'react-router-dom';
 
+import Home from './components/Home/Home';
 import Login from './components/Login/Login';
-import Auth from './components/Login/Auth'
+import Auth from './components/Login/Auth';
 
-
- /*<Route path='/account' exact component = {Account} />*/
+import axios from 'axios';
+window.axios = axios;
+window.Auth = Auth;
 
 class App extends Component {
   render() {
@@ -19,7 +21,6 @@ class App extends Component {
           {/* <Route path='/' component = {} /> */}
           <Route path='/' exact component = {LandingPage} />
           <Route path='/home' exact component = {Home} />
-          <Route path='/app' exact component = {Application} />
       </Switch>
     );
   }

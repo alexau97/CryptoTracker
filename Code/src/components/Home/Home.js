@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-class About extends React.Component {
+class Home extends React.Component {
 
   render() {
 
     return (
             <div>
-				Hello! Welcome to CryptoTracker: An application to help you keep track of prices of many Crytocurrencies!
-	        </div>
+            	Welcome to the home page!
+            </div>
     );
   }
 
 }
 
-export default About;
+export default Home;

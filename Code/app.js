@@ -5,10 +5,11 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var users = require('./routes/users');
 var boards = require('./routes/boards');
+var utils = require('./routes/utils');
 
 var app = express();
 
-var port = process.env.API_PORT || 3001;
+var port = process.env.PORT || 3001;
 
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -34,6 +35,7 @@ app.use(function(req, res, next) {
 
 app.use('/users', users);
 app.use('/boards', boards);
+app.use('/api', utils);
 
 app.listen(port, function(){
   console.log(`api running on port ${port}`);

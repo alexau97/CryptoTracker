@@ -6,6 +6,7 @@ import classes from './styles.css';
 
 import axios from 'axios';
 import Auth from '../../Login/Auth';
+import Calendar from '../../../containers/Calendar/Calendar';
 
 const url = "http://localhost:3001/users/acc/";
 
@@ -13,7 +14,7 @@ class Window extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { user: {} };
+    this.state = { user: '' };
   }
 
   componentDidMount() {
@@ -27,16 +28,19 @@ class Window extends Component {
   render() {
     let view = <div></div>;
 
-    switch (this.props.compView) {
-      case 'profile':
-        break;
-      case 'dashboard':
-        view = <Dashboard compUser={this.state.user} />
-        break;        
-      case 'calendar':
-        break;
-      case 'analytics':
-        break;
+    if (this.state.user) {
+      switch (this.props.compView) {
+        case 'profile':
+          break;
+        case 'dashboard':
+          view = <Dashboard compUser={this.state.user} />
+          break;
+        case 'calendar':
+          view = <Calendar />
+          break;
+        case 'analytics':
+          break;
+      }
     }
 
     return (
