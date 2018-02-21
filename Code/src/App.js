@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import LandingPage from './components/LandingPage/LandingPage';
 
-import Application from './components/Application';
-
 import { Route, Switch } from 'react-router-dom';
 
 import Home from './components/Home/Home';
