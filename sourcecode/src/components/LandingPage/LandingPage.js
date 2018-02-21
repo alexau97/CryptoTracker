@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import classes from './LandingPage.css';
 
-import screenshot from './screenshot.png';
 import SignIn from '../Login/Login';
 import Auth from '../Login/Auth'
 import axios from 'axios'

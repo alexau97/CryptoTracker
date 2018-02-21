@@ -65,7 +65,7 @@ class GoogleSignIn extends React.Component {
 
     if (isSignedIn) {
       toRender.push(
-        <Link key="1" className={classes.redirect} to="/app">
+        <Link key="1" className={classes.redirect} to="/home">
           <div className="abcRioButton abcRioButtonLightBlue">
             <div className="abcRioButtonContentWrapper">
               <div className="abcRioButtonIcon" style={{ padding: '15px' }}>
@@ -75,7 +75,7 @@ class GoogleSignIn extends React.Component {
               </div>
 
               <span className="abcRioButtonContents" style={{ fontSize: '16px', lineHeight: "48px", marginLeft: '-12px' }}>
-                Redirect to App
+                Redirect to Home
               </span>
             </div>
           </div>
