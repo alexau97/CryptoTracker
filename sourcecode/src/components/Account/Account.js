@@ -5,7 +5,9 @@ import history from '../../history';
 
 
 function toHome() {
-    history.push('/home');
+    //window.location.reload();
+  history.push('/home');
+  window.location.reload();
 }
 
 class Account extends React.Component {
