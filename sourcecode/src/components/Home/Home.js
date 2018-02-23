@@ -8,6 +8,8 @@ import history from '../../history';
 //this.state.coin = ['Bitcoin', 'Ethereum', 'Ripple', ...]
 //this.state.price = ['10,000.05', '942.55', '1.45', ...]
 
+var coinArray = []
+var priceArray = []
 
 function toAccount() {
     //window.location.reload();
@@ -20,8 +22,6 @@ function signOut() {
     history.push('/');
     window.location.reload();
   }
-
-
 
 class Home extends React.Component {
 	constructor(props) {
@@ -42,17 +42,15 @@ class Home extends React.Component {
 	}
 
 	getPrices(){
-		var currentCoin = this.state.coin;
-		var currentPrice = '';
+		axios.get('https://api.coinmarketcap.com/v1/ticker/')
+			.then(response=>this.setArray(response.data))
+	}
+
+	setArray(data){
 		for (var i = 0; i<10; i++){
-			console.log("index is = "+ i);
-			axios.get('https://api.coinmarketcap.com/v1/ticker/')
-				.then(response=>this.setState({
-					coin: this.state.coin.concat(response.data[i].name),
-					price: this.state.price.concat(response.data[i].price_usd)
-			}))
-			// console.log(this.state.coin[i])
-			// console.log(this.state.price[i])
+			coinArray[i] = data[i].name;
+			priceArray[i] = data[i].name;
+			console.log("current coin = " + coinArray[i]);
 		}
 	}
 
@@ -73,10 +71,9 @@ class Home extends React.Component {
         <div className={classes.home}>
           <header className={classes.header}>
             <h2 className={classes.title}>
-              CryptoTracker
+              Home Page
             </h2>
-
-            <nav className={classes.navigation}>
+           <nav className={classes.navigation}>
               <button className={classes.nav_button}>
                 Home
               </button>
@@ -88,11 +85,18 @@ class Home extends React.Component {
             <button onClick={signOut}className={classes.nav_button}>
               Logout
             </button>
+
             </nav>
           </header>
           <p className={classes.description}>
-            {this.state.coin[5]}, {this.state.price[5]}
-          </p>
+             {coinArray[0]}, {priceArray[0]}
+           </p>
+          <ul>
+          	{coinArray.map((item,index) => 
+          		<li key = {index}>{item}</li>
+          		)}
+          </ul>
+          <SignIn />
 
           <div className={classes.about}>
             <h3 className={classes.about_title}>
