@@ -3,9 +3,25 @@ import classes from './Home.css';
 import SignIn from '../Login/Login';
 import Auth from '../Login/Auth';
 import axios from 'axios';
+import history from '../../history';
 
 //this.state.coin = ['Bitcoin', 'Ethereum', 'Ripple', ...]
 //this.state.price = ['10,000.05', '942.55', '1.45', ...]
+
+
+function toAccount() {
+    //window.location.reload();
+  history.push('/account');
+  window.location.reload();
+}
+
+function signOut() {
+    localStorage.clear();
+    history.push('/');
+    window.location.reload();
+  }
+
+
 
 class Home extends React.Component {
 	constructor(props) {
@@ -57,14 +73,26 @@ class Home extends React.Component {
         <div className={classes.home}>
           <header className={classes.header}>
             <h2 className={classes.title}>
-              Home Page
+              CryptoTracker
             </h2>
+
+            <nav className={classes.navigation}>
+              <button className={classes.nav_button}>
+                Home
+              </button>
+
+              <button onClick={toAccount}className={classes.nav_button}>
+                Account
+              </button>
+
+            <button onClick={signOut}className={classes.nav_button}>
+              Logout
+            </button>
+            </nav>
           </header>
           <p className={classes.description}>
             {this.state.coin[5]}, {this.state.price[5]}
           </p>
-          <SignIn />
-
 
           <div className={classes.about}>
             <h3 className={classes.about_title}>
