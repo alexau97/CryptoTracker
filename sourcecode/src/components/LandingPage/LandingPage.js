@@ -3,6 +3,7 @@ import classes from './LandingPage.css';
 
 import SignIn from '../Login/Login';
 import Auth from '../Login/Auth'
+import GoogleSignIn from '../Login/GoogleSignIn/GoogleSignIn'
 import axios from 'axios'
 import { Route, Switch, Redirect } from 'react-router-dom';
 
@@ -44,11 +45,11 @@ class LandingPage extends React.Component {
             </nav>
           </header>
           <p className={classes.description}>
-            {this.state.coin}, {this.state.price}
+            {this.state.coin} {this.state.price}
           </p>
+          <br/>
+          <br/>
           <SignIn />
-
-
           <div className={classes.about}>
             <h3 className={classes.about_title}>
               About
