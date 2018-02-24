@@ -34,8 +34,8 @@ class Home extends React.Component {
 		super(props);
 		this.state = {
 			url: "http://localhost:3001/users/",
-			coin: [],
-      price: []
+			coins: [],
+      prices: []
 		}
 		this.setArray = this.setArray.bind(this)
 	}
@@ -56,28 +56,17 @@ class Home extends React.Component {
 			//console.log("current coin = " + coin[i]);
 		}
     this.setState({
-      coin: coinArray,
-      price: priceArray
+      coins: coinArray,
+      prices: priceArray
     });
 	}
 
-	// chooseAPICall(cryptoName){
-	// 	console.log(cryptoName+'has been chosen');
-	// 	var apiCallURL = 'https://api.coinmarketcap.com/v1/ticker/'+cryptoName + '/';
-	// 	console.log("call url" + apiCallURL);
-	// 	axios.get(String(apiCallURL))
-	// 		.then(response=>this.setState({
-	// 			coin: response.data[0].name,
-	// 			price: response.data[0].price_usd
-	// 		}))
-	// }
-
-
    render(){
 
+      let coins = this.state.coins;
+      let prices = this.state.prices;
 
         return (
-
         <div className={classes.home}>
           <header className={classes.header}>
             <h2 className={classes.title}>
@@ -98,10 +87,17 @@ class Home extends React.Component {
 
             </nav>
           </header>
-          <p>
-             {this.state.coin} 
-          </p>
 
+          <ol>
+            {coins.map((item,index)=>
+              <li key = {index}>{item}</li>
+              )}
+          </ol>
+          <ol>
+            {prices.map((item,index)=>
+              <li key = {index}>{item}</li>
+              )}
+          </ol>
 
           <div className={classes.about}>
             <h3 className={classes.about_title}>
