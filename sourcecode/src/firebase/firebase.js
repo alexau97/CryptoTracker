@@ -1,3 +1,5 @@
+
+
 // firebase object from the firebase node package
 import * as firebase from 'firebase';
   // Initialize Firebase
@@ -15,10 +17,11 @@ if (!firebase.apps.length) {
 }
 
 //initialize the auth object
+const db = firebase.database();
 const auth = firebase.auth();
 
 export {
-  auth,
+  db,auth
 }
 
 
