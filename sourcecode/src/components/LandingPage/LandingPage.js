@@ -7,6 +7,8 @@ import GoogleSignIn from '../Login/GoogleSignIn/GoogleSignIn'
 import axios from 'axios'
 import { Route, Switch, Redirect } from 'react-router-dom';
 
+import SignUp from '../FirebaseLogin/SignUp';
+
 
 class LandingPage extends React.Component {
     constructor(props){
