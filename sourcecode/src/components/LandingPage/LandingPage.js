@@ -51,8 +51,9 @@ class LandingPage extends React.Component {
           </p>
           <br/>
           <br/>
+          <SignUp />
           <SignIn />
-          
+
           <div className={classes.about}>
             <h3 className={classes.about_title}>
               About

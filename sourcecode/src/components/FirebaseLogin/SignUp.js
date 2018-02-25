@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import * from '../../firebase';
 import * as routes from '../../constants/routes';
 
 const SignUpPage = () =>
