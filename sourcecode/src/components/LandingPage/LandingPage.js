@@ -28,8 +28,10 @@ class LandingPage extends React.Component {
     handleClick () {
       console.log('Button pressed')
       axios.get('https://api.coinmarketcap.com/v1/ticker/ripple/')
-        .then(response=>this.setState({coin: response.data[0].name, price: response.data[0].price_usd}))
-
+        .then(response=>this.setState({
+          coin: response.data[0].name, 
+          price: response.data[0].price_usd
+        }))
     }
 
     render(){

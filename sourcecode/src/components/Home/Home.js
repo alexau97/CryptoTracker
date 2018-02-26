@@ -4,20 +4,26 @@ import SignIn from '../Login/Login';
 import Auth from '../Login/Auth';
 import axios from 'axios';
 import history from '../../history';
-
+import { Route, Switch, Redirect } from 'react-router-dom';
 //this.state.coin = ['Bitcoin', 'Ethereum', 'Ripple', ...]
 //this.state.price = ['10,000.05', '942.55', '1.45', ...]
 
+
+
 var coinArray = []
 var priceArray = []
+
 
 function toAccount() {
     //window.location.reload();
   history.push('/account');
   window.location.reload();
-}
+	}
 
 function signOut() {
+	 // console.log(coinArray[1]);
+	 // console.log(priceArray[1]);
+
     localStorage.clear();
     history.push('/');
     window.location.reload();
@@ -28,45 +34,38 @@ class Home extends React.Component {
 		super(props);
 		this.state = {
 			url: "http://localhost:3001/users/",
-			coin: [],
-        	price: []
+			coins: [],
+      prices: []
 		}
-		//this.chooseAPICall = this.chooseAPICall.bind(this)
+		this.setArray = this.setArray.bind(this)
 	}
-
 	componentDidMount(){
 		console.log("Home Page mounted");
-		axios.get('https://api.coinmarketcap.com/v1/ticker/')
-			.then(response=>console.log(response.data))
-		this.getPrices();
+		// axios.get('https://api.coinmarketcap.com/v1/ticker/')
+		// 	.then(response=>console.log(response.data))
+    this.getPrices();
 	}
-
 	getPrices(){
 		axios.get('https://api.coinmarketcap.com/v1/ticker/')
 			.then(response=>this.setArray(response.data))
 	}
-
 	setArray(data){
 		for (var i = 0; i<10; i++){
-			coinArray[i] = data[i].name;
-			priceArray[i] = data[i].name;
-			console.log("current coin = " + coinArray[i]);
+			coinArray.push(data[i].name);
+			priceArray.push(data[i].price_usd);
+			//console.log("current coin = " + coin[i]);
 		}
+    this.setState({
+      coins: coinArray,
+      prices: priceArray
+    });
 	}
 
-	// chooseAPICall(cryptoName){
-	// 	console.log(cryptoName+'has been chosen');
-	// 	var apiCallURL = 'https://api.coinmarketcap.com/v1/ticker/'+cryptoName + '/';
-	// 	console.log("call url" + apiCallURL);
-	// 	axios.get(String(apiCallURL))
-	// 		.then(response=>this.setState({
-	// 			coin: response.data[0].name,
-	// 			price: response.data[0].price_usd
-	// 		}))
-	// }
-
-
    render(){
+
+      let coins = this.state.coins;
+      let prices = this.state.prices;
+
         return (
         <div className={classes.home}>
           <header className={classes.header}>
@@ -88,15 +87,17 @@ class Home extends React.Component {
 
             </nav>
           </header>
-          <p className={classes.description}>
-             {coinArray[0]}, {priceArray[0]}
-           </p>
-          <ul>
-          	{coinArray.map((item,index) => 
-          		<li key = {index}>{item}</li>
-          		)}
-          </ul>
-          <SignIn />
+
+          <ol>
+            {coins.map((item,index)=>
+              <li key = {index}>{item}</li>
+              )}
+          </ol>
+          <ol>
+            {prices.map((item,index)=>
+              <li key = {index}>{item}</li>
+              )}
+          </ol>
 
           <div className={classes.about}>
             <h3 className={classes.about_title}>
