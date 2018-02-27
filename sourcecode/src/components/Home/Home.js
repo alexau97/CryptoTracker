@@ -10,6 +10,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 
 
+
 var coinArray = []
 var priceArray = []
 
@@ -22,12 +23,17 @@ function toAccount() {
 
 function signOut() {
 	 // console.log(coinArray[1]);
-	 // console.log(priceArray[1]);
+	 //console.log(priceArray[1]);
 
     localStorage.clear();
     history.push('/');
     window.location.reload();
   }
+
+function handleFormSubmit(e) {
+  console.log('checkbox checked: ',(e.target.checked), e.target.getAttribute('label'));
+}
+
 
 class Home extends React.Component {
 	constructor(props) {
@@ -59,7 +65,9 @@ class Home extends React.Component {
       coins: coinArray,
       prices: priceArray
     });
-	}
+
+}
+
 
    render(){
 
@@ -67,6 +75,7 @@ class Home extends React.Component {
       let prices = this.state.prices;
 
         return (
+
         <div className={classes.home}>
           <header className={classes.header}>
             <h2 className={classes.title}>
@@ -87,12 +96,25 @@ class Home extends React.Component {
 
             </nav>
           </header>
-
-          <ol>
-            {coins.map((item,index)=>
-              <li key = {index}>{item}</li>
-              )}
-          </ol>
+            <div className={classes.control_group}>
+              <ol>
+                
+                {coins.map((item,index)=>
+                  
+                  <li
+                    key = {index}>{item} 
+                    <input 
+                    className={classes.red_heart_checkbox} 
+                    id='redHeart' type="checkbox" 
+                    onChange={handleFormSubmit} 
+                    label = {coins[index]}
+                  />
+                  </li>
+                )}
+              </ol>
+               
+            </div>
+          
           <ol>
             {prices.map((item,index)=>
               <li key = {index}>{item}</li>
@@ -105,7 +127,7 @@ class Home extends React.Component {
             </h3>
             <p className={classes.about_description}>
               This is a project done by a group of students from University of California, Santa Cruz. This is a web application that is created using JavaScript, React, and Google Firebase. 
-              The purpose for this web application is to
+              The purpose for this web application is to keep track of Cryptocurrencies.
             </p>
             <p className={classes.copyright}>
               Copyright 2018
