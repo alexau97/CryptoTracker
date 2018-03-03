@@ -56,7 +56,7 @@ class Home extends React.Component {
 			.then(response=>this.setArray(response.data))
 	}
 	setArray(data){
-		for (var i = 0; i<10; i++){
+		for (var i = 0; i<data.length; i++){
 			coinArray.push(data[i].name);
 			priceArray.push(data[i].price_usd);
 			//console.log("current coin = " + coin[i]);
@@ -120,19 +120,6 @@ class Home extends React.Component {
               <li key = {index}>{item}</li>
               )}
           </ol>
-
-          <div className={classes.about}>
-            <h3 className={classes.about_title}>
-              About
-            </h3>
-            <p className={classes.about_description}>
-              This is a project done by a group of students from University of California, Santa Cruz. This is a web application that is created using JavaScript, React, and Google Firebase. 
-              The purpose for this web application is to keep track of Cryptocurrencies.
-            </p>
-            <p className={classes.copyright}>
-              Copyright 2018
-            </p>
-          </div>
         
         </div>
         )
