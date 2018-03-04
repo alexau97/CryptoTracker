@@ -33,6 +33,11 @@ class LandingPage extends React.Component {
           price: response.data[0].price_usd
         }))
     }
+            // <nav className={classes.navigation}>
+            //   <button className={classes.nav_button} onClick={this.handleClick}>
+            //     Check price (this is a test pls no make fun of design)
+            //   </button>
+            // </nav>
 
     render(){
         return (
@@ -41,19 +46,18 @@ class LandingPage extends React.Component {
             <h2 className={classes.title}>
               CryptoTracker
             </h2>
-
-            <nav className={classes.navigation}>
-              <button className={classes.nav_button} onClick={this.handleClick}>
-                Check price (this is a test pls no make fun of design)
-              </button>
-            </nav>
           </header>
           <p className={classes.description}>
             {this.state.coin} {this.state.price}
           </p>
           <br/>
           <br/>
+          <br/>
           <SignUp />
+          <br/>
+          <h1>or</h1>
+          <br/>
+          <h1>Sign In with Google Account</h1>
           <SignIn />
 
           <div className={classes.about}>
@@ -62,7 +66,7 @@ class LandingPage extends React.Component {
             </h3>
             <p className={classes.about_description}>
               This is a project done by a group of students from University of California, Santa Cruz. This is a web application that is created using JavaScript, React, and Google Firebase. 
-              The purpose for this web application is to
+              The purpose for this web application is to track and save prices of specific Crytocurrencies.
             </p>
             <p className={classes.copyright}>
               Copyright 2018

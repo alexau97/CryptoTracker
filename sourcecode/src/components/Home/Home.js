@@ -10,7 +10,9 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 var coinArray = []
 var priceArray = []
-
+// var favs = {}
+var favs = []
+var space = " "
 
 function toAccount() {
     //window.location.reload();
@@ -29,8 +31,17 @@ function signOut() {
 
 function handleFormSubmit(e) {
   console.log('checkbox checked: ',(e.target.checked), e.target.getAttribute('label'));
+  if(favs[e.target.getAttribute('label')] == false)
+    favs[e.target.getAttribute('label')] = true;
+  else
+    favs[e.target.getAttribute('label')] = false;
+  //console.log(favs[e.target.getAttribute('label')]);
 }
-
+          // <ol>
+          //   {prices.map((item,index)=>
+          //     <li key = {index}>{item}</li>
+          //     )}
+          // </ol>
 
 class Home extends React.Component {
 	constructor(props) {
@@ -56,13 +67,20 @@ class Home extends React.Component {
 		for (var i = 0; i<data.length; i++){
 			coinArray.push(data[i].name);
 			priceArray.push(data[i].price_usd);
+      favs.push(false);
+      //favs[data[i].name] = false;
+      //console.log(favs[data[i].name]);
 			//console.log("current coin = " + coin[i]);
 		}
+    //localStorage.setItem("storeCoin", JSON.stringify(coinArray));
+    //localStorage.setItem("storePrice", JSON.stringify(priceArray));
+    localStorage.setItem("favorites", JSON.stringify(favs));
     this.setState({
       coins: coinArray,
       prices: priceArray
     });
-
+    // localStorage.setItem("storeCoin", JSON.stringify(coins));
+    // localStorage.setItem("storePrice", JSON.stringify(prices));
 }
 
 
@@ -101,6 +119,8 @@ class Home extends React.Component {
                   
                   <li
                     key = {index}>{item} 
+                    {space}
+                    {prices[index]}
                     <input 
                     className={classes.red_heart_checkbox} 
                     id='redHeart' type="checkbox" 
@@ -112,12 +132,6 @@ class Home extends React.Component {
               </ol>
                
             </div>
-            
-          <ol>
-            {prices.map((item,index)=>
-              <li key = {index}>{item}</li>
-              )}
-          </ol>
         </center>
         </div>
         )
