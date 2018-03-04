@@ -8,9 +8,6 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 //this.state.coin = ['Bitcoin', 'Ethereum', 'Ripple', ...]
 //this.state.price = ['10,000.05', '942.55', '1.45', ...]
 
-
-
-
 var coinArray = []
 var priceArray = []
 
@@ -96,6 +93,7 @@ class Home extends React.Component {
 
             </nav>
           </header>
+            <center className = {classes.center}>
             <div className={classes.control_group}>
               <ol>
                 
@@ -114,13 +112,13 @@ class Home extends React.Component {
               </ol>
                
             </div>
-          
+            
           <ol>
             {prices.map((item,index)=>
               <li key = {index}>{item}</li>
               )}
           </ol>
-        
+        </center>
         </div>
         )
     }
