@@ -21,10 +21,10 @@ else {
   var favArray = JSON.parse(localStorage.getItem("favorites"));
 }
 var space = " "
-console.log(localStorage.getItem("favorites"));
-for(var b = 0; b < favArray.length; b++) {
-  console.log(favArray[b]);
-}
+// console.log(localStorage.getItem("favorites"));
+// for(var b = 0; b < favArray.length; b++) {
+//   console.log(favArray[b]);
+// }
 
 function toAccount() {
   localStorage.setItem("favorites", JSON.stringify(favArray));
