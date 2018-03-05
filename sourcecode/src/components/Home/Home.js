@@ -8,6 +8,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 //this.state.coin = ['Bitcoin', 'Ethereum', 'Ripple', ...]
 //this.state.price = ['10,000.05', '942.55', '1.45', ...]
 
+
 var coinArray = []
 var priceArray = []
 var favMap = {}
@@ -58,6 +59,23 @@ function handleFormSubmit(e) {
 
     // favMap[e.target.getAttribute('label')] = false;
     //favArray[coinToIndex[e.target.getAttribute('label')]] = false;
+  if(e.target.checked){
+    var userRef = ref.child("users");
+    userRef.set({
+      
+    })
+
+  }
+
+}
+
+function showFavorites() {
+
+}
+
+function resetAll(){
+
+}
 
   }
     //favs[e.target.getAttribute('label')] = false;
@@ -132,11 +150,11 @@ class Home extends React.Component {
                 Home
               </button>
 
-              <button onClick={toAccount}className={classes.nav_button}>
+              <button onClick={toAccount} className={classes.nav_button}>
                 Account
               </button>
 
-            <button onClick={signOut}className={classes.nav_button}>
+            <button onClick={signOut} className={classes.nav_button}>
               Logout
             </button>
 
@@ -163,7 +181,35 @@ class Home extends React.Component {
               </ol>
                
             </div>
+
         </center>
+          
+          <ol>
+            {prices.map((item,index)=>
+              <li key = {index}>{item}</li>
+              )}
+          </ol>
+
+          <button onClick={showFavorites} className={classes.fav_button}>
+            Show Favorites 
+          </button>
+
+          <button onClick={resetAll} className={classes.reset_button}>
+            Reset 
+          </button>
+
+          <div className={classes.about}>
+            <h3 className={classes.about_title}>
+              About
+            </h3>
+            <p className={classes.about_description}>
+              This is a project done by a group of students from University of California, Santa Cruz. This is a web application that is created using JavaScript, React, and Google Firebase. 
+              The purpose for this web application is to keep track of Cryptocurrencies.
+            </p>
+            <p className={classes.copyright}>
+              Copyright 2018
+            </p>
+          </div>
         </div>
         )
     }
