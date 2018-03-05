@@ -14,7 +14,9 @@ var favMap = {}
 var coinToPrice = {}
 var indexToCoin = {}
 var coinToIndex = {}
-var favArray = []
+//if(localStorage.getItem("favorites") == null) {
+var favArray = [] 
+//}
 var space = " "
 
 function toAccount() {
@@ -35,12 +37,21 @@ function signOut() {
 
 function handleFormSubmit(e) {
   console.log('checkbox checked: ',(e.target.checked), e.target.getAttribute('label'));
-  if(favMap[e.target.getAttribute('label')] == false) {
-    favMap[e.target.getAttribute('label')] = true;
+  if(e.target.checked) { // If the item is favorited
+    // favMap[e.target.getAttribute('label')] = true;
+    favArray[coinToIndex[e.target.getAttribute('label')]] = true;
+    console.log(coinToIndex[e.target.getAttribute('label')]);
+    console.log(favArray[coinToIndex[e.target.getAttribute('label')]]);
   }
     //favs[e.target.getAttribute('label')] = true;
   else {
-    favMap[e.target.getAttribute('label')] = false;
+    favArray[coinToIndex[e.target.getAttribute('label')]] = false;
+    //console.log(coinToIndex[e.target.getAttribute('label')]);
+    //console.log(favArray[coinToIndex[e.target.getAttribute('label')]]);
+
+    // favMap[e.target.getAttribute('label')] = false;
+    //favArray[coinToIndex[e.target.getAttribute('label')]] = false;
+
   }
     //favs[e.target.getAttribute('label')] = false;
   //console.log(favs[e.target.getAttribute('label')]);
@@ -75,12 +86,9 @@ class Home extends React.Component {
 		for (var i = 0; i<data.length; i++){
 			coinArray.push(data[i].name);
 			priceArray.push(data[i].price_usd);
-      if(localStorage.getItem("favorites") != null) {
-
-      }
-      else {
+      //if(localStorage.getItem("favorites") == null) {
         favArray.push(false);//yumyumcoding
-      }
+      //}
       indexToCoin[i] = data[i].name;
       coinToPrice[data[i].name] = data[i].price_usd;
       coinToIndex[data[i].name] = i;

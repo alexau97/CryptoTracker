@@ -18,14 +18,22 @@ var name = localStorage.getItem("Name");
 var image = localStorage.getItem("ImageURL");
 var email = localStorage.getItem("Email");
 var id = localStorage.getItem("ID");
-//console.log(localStorage.getItem("favorites"));
+//if(localStorage.getItem("favorites") != null) {
+console.log(localStorage.getItem("favorites"));
+//}
 
 function displayFavorites() {
+  // if(localStorage.getItem("favorites") != null) {
   var tempFav = JSON.parse(localStorage.getItem("favorites"));
   for (var x = 0; x < tempFav.length; x++) {
-
+    //console.log(tempFav[x]);
+    if(tempFav[x]) { // item is favorited
+      //console.log("displayFavorites");
+      displayFav.push(x);
+    }
   }
-    // console.log(x + " " + tempFav[x]);  
+  // }
+  //   // console.log(x + " " + tempFav[x]);  
 
 }
 
@@ -123,13 +131,28 @@ class Account extends React.Component {
           <br/>
           <br/>
           <center> <h2> Favorite Coins for {name} </h2> </center>
-            <p className={classes.copyright}>
-              Copyright 2018
-            </p>
+          <center className = {classes.center}>
+            <div className={classes.control_group}>
+            <ul>    
+              {displayFav.map((item,index)=>    
+                  <li
+                    key = {index}>{item} 
+                    {space}
+                    {indexToCoin[item]}
+                    {space}
+                    {coinToPrice[indexToCoin[item]]}
+                  </li>
+                )}
+            </ul>   
+            </div>
+        </center>
         </div>
     );
   }
 
 }
 
+            // <p className={classes.copyright}>
+            //   Copyright 2018
+            // </p>
 export default Account;
