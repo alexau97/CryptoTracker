@@ -14,28 +14,28 @@ var favMap = {}
 var coinToPrice = {}
 var indexToCoin = {}
 var coinToIndex = {}
-if(localStorage.getItem("favorites") === "") {
+if(localStorage.getItem("favorites") == "") {
   var favArray = [] 
 }
 else {
   var favArray = JSON.parse(localStorage.getItem("favorites"));
 }
 var space = " "
-// console.log(localStorage.getItem("favorites"));
-// for(var b = 0; b < favArray.length; b++) {
-//   console.log(favArray[b]);
-// }
+console.log(localStorage.getItem("favorites"));
+for(var b = 0; b < favArray.length; b++) {
+  console.log(favArray[b]);
+}
 
 function toAccount() {
   localStorage.setItem("favorites", JSON.stringify(favArray));
     //window.location.reload();
   history.push('/account');
   window.location.reload();
-	}
+  }
 
 function signOut() {
-	 // console.log(coinArray[1]);
-	 //console.log(priceArray[1]);
+   // console.log(coinArray[1]);
+   //console.log(priceArray[1]);
 
     localStorage.clear();
     history.push('/');
@@ -70,30 +70,30 @@ function handleFormSubmit(e) {
           // </ol>
 
 class Home extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			url: "http://localhost:3001/users/",
-			coins: [],
+  constructor(props) {
+    super(props);
+    this.state = {
+      url: "http://localhost:3001/users/",
+      coins: [],
       prices: []
-		}
-		this.setArray = this.setArray.bind(this)
-	}
-	componentDidMount(){
-		console.log("Home Page mounted");
-		// axios.get('https://api.coinmarketcap.com/v1/ticker/')
-		// 	.then(response=>console.log(response.data))
+    }
+    this.setArray = this.setArray.bind(this)
+  }
+  componentDidMount(){
+    console.log("Home Page mounted");
+    // axios.get('https://api.coinmarketcap.com/v1/ticker/')
+    //  .then(response=>console.log(response.data))
     this.getPrices();
-	}
-	getPrices(){
-		axios.get('https://api.coinmarketcap.com/v1/ticker/')
-			.then(response=>this.setArray(response.data))
-	}
-	setArray(data){
-		for (var i = 0; i<data.length; i++){
-			coinArray.push(data[i].name);
-			priceArray.push(data[i].price_usd);
-      if(localStorage.getItem("favorites") === "") {
+  }
+  getPrices(){
+    axios.get('https://api.coinmarketcap.com/v1/ticker/')
+      .then(response=>this.setArray(response.data))
+  }
+  setArray(data){
+    for (var i = 0; i<data.length; i++){
+      coinArray.push(data[i].name);
+      priceArray.push(data[i].price_usd);
+      if(localStorage.getItem("favorites") == "") {
         favArray.push(false);//yumyumcoding
       }
       indexToCoin[i] = data[i].name;
@@ -101,8 +101,8 @@ class Home extends React.Component {
       coinToIndex[data[i].name] = i;
       //favs[data[i].name] = false;
       //console.log(favs[data[i].name]);
-			//console.log("current coin = " + coin[i]);
-		}
+      //console.log("current coin = " + coin[i]);
+    }
     //localStorage.setItem("storeCoin", JSON.stringify(coinArray));
     //localStorage.setItem("storePrice", JSON.stringify(priceArray));
     //localStorage.setItem("favorites", JSON.stringify(favs));

@@ -24,16 +24,16 @@ console.log(localStorage.getItem("favorites"));
 
 function displayFavorites() {
   // if(localStorage.getItem("favorites") != null) {
-  if(localStorage.getItem("favorites") != "") {
+  //if(localStorage.getItem("favorites") != "") {
     var tempFav = JSON.parse(localStorage.getItem("favorites"));
     for (var x = 0; x < tempFav.length; x++) {
-      //console.log(tempFav[x]);
+      console.log(tempFav[x]);
       if(tempFav[x]) { // item is favorited
         //console.log("displayFavorites");
         displayFav.push(x);
       }
     }
-  }
+  //}
   // }
   //   // console.log(x + " " + tempFav[x]);  
 
