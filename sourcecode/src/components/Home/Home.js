@@ -14,10 +14,17 @@ var favMap = {}
 var coinToPrice = {}
 var indexToCoin = {}
 var coinToIndex = {}
-//if(localStorage.getItem("favorites") == null) {
-var favArray = [] 
-//}
+if(localStorage.getItem("favorites") == "") {
+  var favArray = [] 
+}
+else {
+  var favArray = JSON.parse(localStorage.getItem("favorites"));
+}
 var space = " "
+console.log(localStorage.getItem("favorites"));
+for(var b = 0; b < favArray.length; b++) {
+  console.log(favArray[b]);
+}
 
 function toAccount() {
   localStorage.setItem("favorites", JSON.stringify(favArray));
@@ -86,9 +93,9 @@ class Home extends React.Component {
 		for (var i = 0; i<data.length; i++){
 			coinArray.push(data[i].name);
 			priceArray.push(data[i].price_usd);
-      //if(localStorage.getItem("favorites") == null) {
+      if(localStorage.getItem("favorites") == "") {
         favArray.push(false);//yumyumcoding
-      //}
+      }
       indexToCoin[i] = data[i].name;
       coinToPrice[data[i].name] = data[i].price_usd;
       coinToIndex[data[i].name] = i;
