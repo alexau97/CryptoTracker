@@ -14,7 +14,7 @@ var favMap = {}
 var coinToPrice = {}
 var indexToCoin = {}
 var coinToIndex = {}
-if(localStorage.getItem("favorites") == "") {
+if(localStorage.getItem("favorites") === "") {
   var favArray = [] 
 }
 else {
@@ -93,7 +93,7 @@ class Home extends React.Component {
 		for (var i = 0; i<data.length; i++){
 			coinArray.push(data[i].name);
 			priceArray.push(data[i].price_usd);
-      if(localStorage.getItem("favorites") == "") {
+      if(localStorage.getItem("favorites") === "") {
         favArray.push(false);//yumyumcoding
       }
       indexToCoin[i] = data[i].name;
