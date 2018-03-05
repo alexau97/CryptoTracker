@@ -8,7 +8,9 @@ import axios from 'axios';
 
 var coinArray = []
 var priceArray = []
-var favs = {}
+var coinToPrice = {}
+var indexToCoin = {}
+var coinToIndex = {}
 var displayFav = []
 //var favs = []
 var space = " "
@@ -16,16 +18,19 @@ var name = localStorage.getItem("Name");
 var image = localStorage.getItem("ImageURL");
 var email = localStorage.getItem("Email");
 var id = localStorage.getItem("ID");
-console.log(localStorage.getItem("favorites"));
+//console.log(localStorage.getItem("favorites"));
 
 function displayFavorites() {
   var tempFav = JSON.parse(localStorage.getItem("favorites"));
-  for (var x = 0; x < tempFav.length; x++)
-    console.out(tempFav[x]);  
+  for (var x = 0; x < tempFav.length; x++) {
+
+  }
+    // console.log(x + " " + tempFav[x]);  
 
 }
 
 function toHome() {
+    //localStorage.setItem("favorites", JSON.stringify(favs));
     //window.location.reload();
   history.push('/home');
   window.location.reload();
@@ -54,6 +59,7 @@ class Account extends React.Component {
       console.log("Account Page mounted");
       // axios.get('https://api.coinmarketcap.com/v1/ticker/')
       //  .then(response=>console.log(response.data))
+      displayFavorites();
       this.getPrices();
     }
     getPrices(){
@@ -64,6 +70,9 @@ class Account extends React.Component {
       for (var i = 0; i<data.length; i++){
         coinArray.push(data[i].name);
         priceArray.push(data[i].price_usd);
+        indexToCoin[i] = data[i].name;
+        coinToPrice[data[i].name] = data[i].price_usd;
+        coinToIndex[data[i].name] = i;
         //favs.push(false);
         //favs[data[i].name] = false;
         //console.log(favs[data[i].name]);
