@@ -49,11 +49,11 @@ function signOut() {
 
 function handleFormSubmit(e) {
   console.log('checkbox checked: ',(e.target.checked), e.target.getAttribute('label'));
-  if(e.target.checked) { // If the item is favorited
+  if(!favArray[coinToIndex[e.target.getAttribute('label')]]) { // If the item is favorited
     // favMap[e.target.getAttribute('label')] = true;
     favArray[coinToIndex[e.target.getAttribute('label')]] = true;
     //checkArray[coinToIndex[e.target.getAttribute('label')]] = true;
-    console.log(coinToIndex[e.target.getAttribute('label')]);
+    //console.log(coinToIndex[e.target.getAttribute('label')]);
     console.log(favArray[coinToIndex[e.target.getAttribute('label')]]);
    // e.checked = true;
   }
@@ -63,7 +63,7 @@ function handleFormSubmit(e) {
     //checkArray[coinToIndex[e.target.getAttribute('label')]] = false;
     //e.checked = false;
     //console.log(coinToIndex[e.target.getAttribute('label')]);
-    //console.log(favArray[coinToIndex[e.target.getAttribute('label')]]);
+    console.log(favArray[coinToIndex[e.target.getAttribute('label')]]);
 
     // favMap[e.target.getAttribute('label')] = false;
     //favArray[coinToIndex[e.target.getAttribute('label')]] = false;
@@ -71,6 +71,8 @@ function handleFormSubmit(e) {
   }
     //favs[e.target.getAttribute('label')] = false;
   //console.log(favs[e.target.getAttribute('label')]);
+  localStorage.setItem("favorites", JSON.stringify(favArray));
+  window.location.reload();
 }
 function displayCheck() {
   for(var n = 0; n < 100; n++) {
@@ -180,7 +182,7 @@ class Home extends React.Component {
                           className="uk-checkbox"
                           id={index.toString()} type="checkbox" 
                           onChange={handleFormSubmit} 
-                          checked = {displayCheck}
+                          checked = {favArray[index]}
                           label = {coins[index]}
                         />
                         {space}
