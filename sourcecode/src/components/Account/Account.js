@@ -140,7 +140,6 @@ class Account extends React.Component {
             <img src={image}/>
             <h3>Account Information for {name} </h3> 
             <h3>Email: {email} </h3> 
-            <h3> ID: {id} </h3>
           </center>
           <br/>
           <br/>

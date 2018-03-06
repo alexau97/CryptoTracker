@@ -25,6 +25,7 @@ class LandingPage extends React.Component {
     componentDidMount(){
       console.log("Landing Page mounted")
       localStorage.setItem("favorites", "");
+      //localStorage.setItem("checked", "");
     }
 
     handleClick () {

@@ -18,9 +18,11 @@ var indexToCoin = {}
 var coinToIndex = {}
 if(localStorage.getItem("favorites") == "") {
   var favArray = [] 
+  //var checkArray = []
 }
 else {
   var favArray = JSON.parse(localStorage.getItem("favorites"));
+  //var checkArray = JSON.parse(localStorage.getItem("checked"));
 }
 var space = " "
 // console.log(localStorage.getItem("favorites"));
@@ -30,6 +32,7 @@ var space = " "
 
 function toAccount() {
   localStorage.setItem("favorites", JSON.stringify(favArray));
+  //localStorage.setItem("checked", JSON.stringify(checkArray));
     //window.location.reload();
   history.push('/account');
   window.location.reload();
@@ -49,12 +52,16 @@ function handleFormSubmit(e) {
   if(e.target.checked) { // If the item is favorited
     // favMap[e.target.getAttribute('label')] = true;
     favArray[coinToIndex[e.target.getAttribute('label')]] = true;
+    //checkArray[coinToIndex[e.target.getAttribute('label')]] = true;
     console.log(coinToIndex[e.target.getAttribute('label')]);
     console.log(favArray[coinToIndex[e.target.getAttribute('label')]]);
+   // e.checked = true;
   }
     //favs[e.target.getAttribute('label')] = true;
   else {
     favArray[coinToIndex[e.target.getAttribute('label')]] = false;
+    //checkArray[coinToIndex[e.target.getAttribute('label')]] = false;
+    //e.checked = false;
     //console.log(coinToIndex[e.target.getAttribute('label')]);
     //console.log(favArray[coinToIndex[e.target.getAttribute('label')]]);
 
@@ -64,6 +71,12 @@ function handleFormSubmit(e) {
   }
     //favs[e.target.getAttribute('label')] = false;
   //console.log(favs[e.target.getAttribute('label')]);
+}
+function displayCheck() {
+  for(var n = 0; n < 100; n++) {
+    var temp = document.getElementById(n.toString());
+    console.log(temp.type);
+  }
 }
           // <ol>
           //   {prices.map((item,index)=>
@@ -97,6 +110,7 @@ class Home extends React.Component {
       priceArray.push(data[i].price_usd);
       if(localStorage.getItem("favorites") == "" || localStorage.getItem("favorites") == null) {
         favArray.push(false);//yumyumcoding
+        //checkArray.push(false);
       }
       indexToCoin[i] = data[i].name;
       coinToPrice[data[i].name] = data[i].price_usd;
@@ -164,8 +178,9 @@ class Home extends React.Component {
                         <td> 
                         <input 
                           className="uk-checkbox"
-                          id='redHeart' type="checkbox" 
+                          id={index.toString()} type="checkbox" 
                           onChange={handleFormSubmit} 
+                          checked = {displayCheck}
                           label = {coins[index]}
                         />
                         {space}
