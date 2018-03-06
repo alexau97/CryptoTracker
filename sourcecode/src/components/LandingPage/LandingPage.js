@@ -9,7 +9,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 import SignUp from '../FirebaseLogin/index';
 
-localStorage.setItem("favorites", "");
+//localStorage.setItem("favorites", "");
 
 class LandingPage extends React.Component {
     constructor(props){
