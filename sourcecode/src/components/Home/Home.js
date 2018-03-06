@@ -7,6 +7,8 @@ import history from '../../history';
 import { Route, Switch, Redirect } from 'react-router-dom';
 //this.state.coin = ['Bitcoin', 'Ethereum', 'Ripple', ...]
 //this.state.price = ['10,000.05', '942.55', '1.45', ...]
+import PrettyCheckbox from 'pretty-checkbox-vue';
+//Vue.use(PrettyCheckbox);
 
 
 var coinArray = []
@@ -17,9 +19,11 @@ var indexToCoin = {}
 var coinToIndex = {}
 if(localStorage.getItem("favorites") == "") {
   var favArray = [] 
+  //var checkArray = []
 }
 else {
   var favArray = JSON.parse(localStorage.getItem("favorites"));
+  //var checkArray = JSON.parse(localStorage.getItem("checked"));
 }
 var space = " "
 // console.log(localStorage.getItem("favorites"));
@@ -29,6 +33,7 @@ var space = " "
 
 function toAccount() {
   localStorage.setItem("favorites", JSON.stringify(favArray));
+  //localStorage.setItem("checked", JSON.stringify(checkArray));
     //window.location.reload();
   history.push('/account');
   window.location.reload();
@@ -45,41 +50,38 @@ function signOut() {
 
 function handleFormSubmit(e) {
   console.log('checkbox checked: ',(e.target.checked), e.target.getAttribute('label'));
-  if(e.target.checked) { // If the item is favorited
+  if(!favArray[coinToIndex[e.target.getAttribute('label')]]) { // If the item is favorited
     // favMap[e.target.getAttribute('label')] = true;
     favArray[coinToIndex[e.target.getAttribute('label')]] = true;
-    console.log(coinToIndex[e.target.getAttribute('label')]);
+    //checkArray[coinToIndex[e.target.getAttribute('label')]] = true;
+    //console.log(coinToIndex[e.target.getAttribute('label')]);
     console.log(favArray[coinToIndex[e.target.getAttribute('label')]]);
+   // e.checked = true;
   }
     //favs[e.target.getAttribute('label')] = true;
   else {
     favArray[coinToIndex[e.target.getAttribute('label')]] = false;
+    //checkArray[coinToIndex[e.target.getAttribute('label')]] = false;
+    //e.checked = false;
     //console.log(coinToIndex[e.target.getAttribute('label')]);
-    //console.log(favArray[coinToIndex[e.target.getAttribute('label')]]);
+    console.log(favArray[coinToIndex[e.target.getAttribute('label')]]);
 
     // favMap[e.target.getAttribute('label')] = false;
     //favArray[coinToIndex[e.target.getAttribute('label')]] = false;
-  if(e.target.checked){
-    var userRef = ref.child("users");
-    userRef.set({
-      
-    })
 
   }
 
 }
-
-function showFavorites() {
-
-}
-
-function resetAll(){
-
-}
-
-  }
     //favs[e.target.getAttribute('label')] = false;
   //console.log(favs[e.target.getAttribute('label')]);
+  localStorage.setItem("favorites", JSON.stringify(favArray));
+  window.location.reload();
+}
+function displayCheck() {
+  for(var n = 0; n < 100; n++) {
+    var temp = document.getElementById(n.toString());
+    console.log(temp.type);
+  }
 }
           // <ol>
           //   {prices.map((item,index)=>
@@ -111,8 +113,9 @@ class Home extends React.Component {
     for (var i = 0; i<data.length; i++){
       coinArray.push(data[i].name);
       priceArray.push(data[i].price_usd);
-      if(localStorage.getItem("favorites") == "") {
+      if(localStorage.getItem("favorites") == "" || localStorage.getItem("favorites") == null) {
         favArray.push(false);//yumyumcoding
+        //checkArray.push(false);
       }
       indexToCoin[i] = data[i].name;
       coinToPrice[data[i].name] = data[i].price_usd;
@@ -138,7 +141,9 @@ class Home extends React.Component {
       let coins = this.state.coins;
       let prices = this.state.prices;
 
+
         return (
+
 
         <div className={classes.home}>
           <header className={classes.header}>
@@ -160,6 +165,7 @@ class Home extends React.Component {
 
             </nav>
           </header>
+<<<<<<< HEAD
             <center className = {classes.center}>
             <div className={classes.control_group}>
               <ol>
@@ -189,15 +195,7 @@ class Home extends React.Component {
               <li key = {index}>{item}</li>
               )}
           </ol>
-
-          <button onClick={showFavorites} className={classes.fav_button}>
-            Show Favorites 
-          </button>
-
-          <button onClick={resetAll} className={classes.reset_button}>
-            Reset 
-          </button>
-
+          
           <div className={classes.about}>
             <h3 className={classes.about_title}>
               About
@@ -210,6 +208,40 @@ class Home extends React.Component {
               Copyright 2018
             </p>
           </div>
+          
+          <center>
+            
+              <div className={classes.control_group}>
+                <table className="uk-table uk-table-hover uk-table-striped">
+                  <thead>
+                    <tr>
+                      <th>Coin Name</th>
+                      <th>Coin Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {coins.map((item,index)=>
+                      
+                    <tr>
+                        <td> 
+                        <input 
+                          className="uk-checkbox"
+                          id={index.toString()} type="checkbox" 
+                          onChange={handleFormSubmit} 
+                          checked = {favArray[index]}
+                          label = {coins[index]}
+                        />
+                        {space}
+                        {item} </td>
+                        <td>{prices[index]}</td>
+                    </tr>
+                    )}
+                </tbody>
+                </table>
+              </div>
+            
+          </center>
+            
         </div>
         )
     }

@@ -10,6 +10,10 @@
   list-style-position: inside;
 }
 
+.control_group th{
+  text-align: center;
+}
+
 .header {
   position: relative;
   width: 100%;
