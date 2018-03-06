@@ -56,6 +56,8 @@ function handleFormSubmit(e) {
     //checkArray[coinToIndex[e.target.getAttribute('label')]] = true;
     //console.log(coinToIndex[e.target.getAttribute('label')]);
     console.log(favArray[coinToIndex[e.target.getAttribute('label')]]);
+    localStorage.setItem("favorites", JSON.stringify(favArray));
+    window.location.reload();
    // e.checked = true;
   }
     //favs[e.target.getAttribute('label')] = true;
@@ -65,6 +67,8 @@ function handleFormSubmit(e) {
     //e.checked = false;
     //console.log(coinToIndex[e.target.getAttribute('label')]);
     console.log(favArray[coinToIndex[e.target.getAttribute('label')]]);
+    localStorage.setItem("favorites", JSON.stringify(favArray));
+    window.location.reload();
 
     // favMap[e.target.getAttribute('label')] = false;
     //favArray[coinToIndex[e.target.getAttribute('label')]] = false;
