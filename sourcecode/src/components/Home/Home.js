@@ -7,6 +7,8 @@ import history from '../../history';
 import { Route, Switch, Redirect } from 'react-router-dom';
 //this.state.coin = ['Bitcoin', 'Ethereum', 'Ripple', ...]
 //this.state.price = ['10,000.05', '942.55', '1.45', ...]
+import PrettyCheckbox from 'pretty-checkbox-vue';
+//Vue.use(PrettyCheckbox);
 
 var coinArray = []
 var priceArray = []
@@ -120,7 +122,9 @@ class Home extends React.Component {
       let coins = this.state.coins;
       let prices = this.state.prices;
 
+
         return (
+
 
         <div className={classes.home}>
           <header className={classes.header}>
@@ -142,28 +146,39 @@ class Home extends React.Component {
 
             </nav>
           </header>
-            <center className = {classes.center}>
-            <div className={classes.control_group}>
-              <ol>
-                
-                {coins.map((item,index)=>
-                  
-                  <li
-                    key = {index}>{item} 
-                    {space}
-                    {prices[index]}
-                    <input 
-                    className={classes.red_heart_checkbox} 
-                    id='redHeart' type="checkbox" 
-                    onChange={handleFormSubmit} 
-                    label = {coins[index]}
-                  />
-                  </li>
-                )}
-              </ol>
-               
-            </div>
-        </center>
+          
+          <center>
+            
+              <div className={classes.control_group}>
+                <table className="uk-table uk-table-hover uk-table-striped">
+                  <thead>
+                    <tr>
+                      <th>Coin Name</th>
+                      <th>Coin Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {coins.map((item,index)=>
+                      
+                    <tr>
+                        <td> 
+                        <input 
+                          className="uk-checkbox"
+                          id='redHeart' type="checkbox" 
+                          onChange={handleFormSubmit} 
+                          label = {coins[index]}
+                        />
+                        {space}
+                        {item} </td>
+                        <td>{prices[index]}</td>
+                    </tr>
+                    )}
+                </tbody>
+                </table>
+              </div>
+            
+          </center>
+            
         </div>
         )
     }

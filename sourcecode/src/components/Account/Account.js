@@ -50,6 +50,18 @@ function signOut() {
     window.location.reload();
   }
 
+function DeleteFav(e){
+  console.log(e.target.getAttribute('label'));
+  var tempFav = JSON.parse(localStorage.getItem("favorites"));
+  for (var x = 0; x < tempFav.length; x++) {
+    if(x == e.target.getAttribute('label')) {
+      tempFav[x] = false; 
+      localStorage.setItem("favorites", JSON.stringify(tempFav));
+      window.location.reload();
+    }
+  }
+  console.log(tempFav);
+}
 
 // console.log(localStorage.getItem("storeCoin"));
 // console.log(localStorage.getItem("storePrice"));
@@ -133,17 +145,28 @@ class Account extends React.Component {
           <center> <h2> Favorite Coins for {name} </h2> </center>
           <center className = {classes.center}>
             <div className={classes.control_group}>
-            <ul>    
-              {displayFav.map((item,index)=>    
-                  <li
-                    key = {index}>{item} 
-                    {space}
-                    {indexToCoin[item]}
-                    {space}
-                    {coinToPrice[indexToCoin[item]]}
-                  </li>
-                )}
-            </ul>   
+              <table className="uk-table uk-table-hover uk-table-striped">
+                <thead>
+                    <tr>
+                      <th>Coin Index</th>
+                      <th>Coin Name</th>
+                      <th>Coin Price</th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    {displayFav.map((item,index)=>         
+                    <tr>
+                      <td>{item}</td>
+                      <td> {indexToCoin[item]} </td>
+                      <td>{coinToPrice[indexToCoin[item]]}</td>
+                      <td>
+                        <button class="uk-button" label={item} onClick={DeleteFav}>Delete</button>
+                      </td>
+                    </tr>
+                    )}
+                </tbody>
+              </table>
             </div>
         </center>
         </div>
