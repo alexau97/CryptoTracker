@@ -16,7 +16,7 @@ var favMap = {}
 var coinToPrice = {}
 var indexToCoin = {}
 var coinToIndex = {}
-if(localStorage.getItem("favorites") == "") {
+if(localStorage.getItem("favorites") == "" || localStorage.getItem("favorites") == null) {
   var favArray = [] 
   //var checkArray = []
 }
