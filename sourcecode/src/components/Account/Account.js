@@ -47,6 +47,7 @@ function toHome() {
 }
 
 function signOut() {
+    Auth.logOut();
     localStorage.clear();
     history.push('/');
     window.location.reload();

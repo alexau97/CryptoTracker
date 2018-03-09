@@ -13,11 +13,12 @@ import PrettyCheckbox from 'pretty-checkbox-vue';
 
 var coinArray = []
 var priceArray = []
+var urlArray = []
 var favMap = {}
 var coinToPrice = {}
 var indexToCoin = {}
 var coinToIndex = {}
-if(localStorage.getItem("favorites") == "") {
+if(localStorage.getItem("favorites") == "" || localStorage.getItem("favorites") == null) {
   var favArray = [] 
   //var checkArray = []
 }
@@ -42,7 +43,7 @@ function toAccount() {
 function signOut() {
    // console.log(coinArray[1]);
    //console.log(priceArray[1]);
-
+    Auth.logOut();
     localStorage.clear();
     history.push('/');
     window.location.reload();
@@ -87,6 +88,7 @@ function displayCheck() {
     console.log(temp.type);
   }
 }
+
           // <ol>
           //   {prices.map((item,index)=>
           //     <li key = {index}>{item}</li>
@@ -99,7 +101,8 @@ class Home extends React.Component {
     this.state = {
       url: "http://localhost:3001/users/",
       coins: [],
-      prices: []
+      prices: [],
+      urls: []
     }
     this.setArray = this.setArray.bind(this)
   }
@@ -114,9 +117,12 @@ class Home extends React.Component {
       .then(response=>this.setArray(response.data))
   }
   setArray(data){
+    var url = "";
     for (var i = 0; i<data.length; i++){
       coinArray.push(data[i].name);
       priceArray.push(data[i].price_usd);
+      url = "https://bittrex.com/Market/Index?MarketName=USDT-" + data[i].symbol;
+      urlArray.push(url)
       if(localStorage.getItem("favorites") == "" || localStorage.getItem("favorites") == null) {
         favArray.push(false);//yumyumcoding
         //checkArray.push(false);
@@ -133,18 +139,20 @@ class Home extends React.Component {
     //localStorage.setItem("favorites", JSON.stringify(favs));
     this.setState({
       coins: coinArray,
-      prices: priceArray
+      prices: priceArray,
+      urls: urlArray
     });
     // localStorage.setItem("storeCoin", JSON.stringify(coins));
     // localStorage.setItem("storePrice", JSON.stringify(prices));
 }
 
 
+
    render(){
 
       let coins = this.state.coins;
       let prices = this.state.prices;
-
+      let urls = this.state.urls;
 
         return (
 
@@ -221,6 +229,7 @@ class Home extends React.Component {
                     <tr>
                       <th>Coin Name</th>
                       <th>Coin Price</th>
+                      <th>Buy Coin</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -238,8 +247,9 @@ class Home extends React.Component {
                         {space}
                         {item} </td>
                         <td>{prices[index]}</td>
+                        <td><a href={urls[index]}>Buy {coins[index]}</a></td>
                     </tr>
-                    )}
+                    )}i
                 </tbody>
                 </table>
               </div>
