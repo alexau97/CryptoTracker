@@ -42,7 +42,7 @@ function toAccount() {
 function signOut() {
    // console.log(coinArray[1]);
    //console.log(priceArray[1]);
-
+    Auth.logOut();
     localStorage.clear();
     history.push('/');
     window.location.reload();
