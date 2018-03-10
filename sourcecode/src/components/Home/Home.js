@@ -10,7 +10,6 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import PrettyCheckbox from 'pretty-checkbox-vue';
 //Vue.use(PrettyCheckbox);
 
-
 var coinArray = []
 var priceArray = []
 var urlArray = []
@@ -75,8 +74,6 @@ function handleFormSubmit(e) {
     //favArray[coinToIndex[e.target.getAttribute('label')]] = false;
 
   }
-
-}
     //favs[e.target.getAttribute('label')] = false;
   //console.log(favs[e.target.getAttribute('label')]);
   localStorage.setItem("favorites", JSON.stringify(favArray));
@@ -167,59 +164,16 @@ class Home extends React.Component {
                 Home
               </button>
 
-              <button onClick={toAccount} className={classes.nav_button}>
+              <button onClick={toAccount}className={classes.nav_button}>
                 Account
               </button>
 
-            <button onClick={signOut} className={classes.nav_button}>
+            <button onClick={signOut}className={classes.nav_button}>
               Logout
             </button>
 
             </nav>
           </header>
-<<<<<<< HEAD
-            <center className = {classes.center}>
-            <div className={classes.control_group}>
-              <ol>
-                
-                {coins.map((item,index)=>
-                  
-                  <li
-                    key = {index}>{item} 
-                    {space}
-                    {prices[index]}
-                    <input 
-                    className={classes.red_heart_checkbox} 
-                    id='redHeart' type="checkbox" 
-                    onChange={handleFormSubmit} 
-                    label = {coins[index]}
-                  />
-                  </li>
-                )}
-              </ol>
-               
-            </div>
-
-        </center>
-          
-          <ol>
-            {prices.map((item,index)=>
-              <li key = {index}>{item}</li>
-              )}
-          </ol>
-          
-          <div className={classes.about}>
-            <h3 className={classes.about_title}>
-              About
-            </h3>
-            <p className={classes.about_description}>
-              This is a project done by a group of students from University of California, Santa Cruz. This is a web application that is created using JavaScript, React, and Google Firebase. 
-              The purpose for this web application is to keep track of Cryptocurrencies.
-            </p>
-            <p className={classes.copyright}>
-              Copyright 2018
-            </p>
-          </div>
           
           <center>
             
