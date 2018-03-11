@@ -7,8 +7,11 @@ import history from '../../history';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 var coinArray = []
-var leftCompArray = []
-var rightCompArray = []
+var leftCoinData = []
+var rightCoinData = []
+var fullCoinData = []
+var magic = null;
+
 if(localStorage.getItem("favorites") == "" || localStorage.getItem("favorites") == null) {
   var favArray = [] 
   //var checkArray = []
@@ -42,6 +45,13 @@ function signOut() {
     history.push('/');
     window.location.reload();
 }
+
+function compareCoins(){
+	var leftCoin = document.getElementById("leftdd").value;
+	var rightCoin = document.getElementById("rightdd").value;
+	console.log(leftCoin, rightCoin);
+}
+
 
 class Compare extends React.Component {
 	constructor(props) {
@@ -99,7 +109,7 @@ class Compare extends React.Component {
 				</header>
 
 			<div>
-				<select>
+				<select id="leftdd">
 					<option value="bitcoin">Bitcoin</option>
 					<option value="ethereum">Ethereum</option>
 					<option value="ripple">Ripple</option>
@@ -198,12 +208,13 @@ class Compare extends React.Component {
 					<option value="request-network">Request Network</option>
 					<option value="storj">Storj</option>
 					<option value="enigma-project">Enigma</option>
-					<option value="maidsafecoin">MaidSafecoin</option>
+					<option value="maidsafecoin">MaidSafeCoin</option>
+					<option value="pillar">Pillar</option>
 				</select>
 			</div>
 
 			<div>
-				<select>
+				<select id="rightdd">
 					<option value="bitcoin">Bitcoin</option>
 					<option value="ethereum">Ethereum</option>
 					<option value="ripple">Ripple</option>
@@ -303,11 +314,12 @@ class Compare extends React.Component {
 					<option value="storj">Storj</option>
 					<option value="enigma-project">Enigma</option>
 					<option value="maidsafecoin">MaidSafecoin</option>
+					<option value="pillar">Pillar</option>
 				</select>
 			</div>
+			<br/>
+			<button onClick={compareCoins}>Compare</button>
 		</div>
-
-
 
 		)
 	}
