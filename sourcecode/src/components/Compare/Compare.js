@@ -9,6 +9,14 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 var coinArray = []
 var leftCompArray = []
 var rightCompArray = []
+if(localStorage.getItem("favorites") == "" || localStorage.getItem("favorites") == null) {
+  var favArray = [] 
+  //var checkArray = []
+}
+else {
+  var favArray = JSON.parse(localStorage.getItem("favorites"));
+  //var checkArray = JSON.parse(localStorage.getItem("checked"));
+}
 
 function toAccount() {
   localStorage.setItem("favorites", JSON.stringify(favArray));
@@ -289,9 +297,12 @@ class Compare extends React.Component {
 					<option value="maidsafecoin">MaidSafecoin</option>
 				</select>
 			</div>
+		</div>
 
 
 
 		)
 	}
 }
+
+export default Compare;

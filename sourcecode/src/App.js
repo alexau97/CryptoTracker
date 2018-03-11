@@ -8,6 +8,7 @@ import Home from './components/Home/Home';
 import Account from './components/Account/Account';
 import Login from './components/Login/Login';
 import Auth from './components/Login/Auth';
+import Compare from './components/Compare/Compare';
 
 import history from './history';
 
@@ -23,6 +24,7 @@ class App extends Component {
           <Route path='/' exact component = {LandingPage} />
           <Route path='/home' exact component = {Home} />
           <Route path='/account' exact component = {Account} />
+          <Route path='/compare' exact component = {Compare} />
       </Switch>
     );
   }
