@@ -26,6 +26,14 @@ function toAccount() {
   window.location.reload();
 }
 
+
+function toHome() {
+    //localStorage.setItem("favorites", JSON.stringify(favs));
+    //window.location.reload();
+  history.push('/home');
+  window.location.reload();
+}
+
 function signOut() {
    // console.log(coinArray[1]);
    //console.log(priceArray[1]);
@@ -76,7 +84,7 @@ class Compare extends React.Component {
 					</h2>
 					
 					<nav className={classes.navigation}>
-						<button className={classes.nav_button}>
+						<button onClick={toHome} className={classes.nav_button}>
 							Home
 						</button>
 
