@@ -54,7 +54,11 @@ function toCompare() {
 }
 
 function signOut() {
-    Auth.logOut();
+   // console.log(coinArray[1]);
+   //console.log(priceArray[1]);
+    if(localStorage.getItem("flag") === "1") {
+      Auth.logOut();
+    }
     localStorage.clear();
     history.push('/');
     window.location.reload();

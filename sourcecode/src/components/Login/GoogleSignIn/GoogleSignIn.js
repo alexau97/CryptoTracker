@@ -39,6 +39,7 @@ class GoogleSignIn extends React.Component {
   }
 
   onSignIn(googleUser) {
+    localStorage.setItem("flag", "1");
       var profile = googleUser.getBasicProfile();
       console.log('ID: ' + profile.getId()); 
       localStorage.setItem("ID", profile.getId());
