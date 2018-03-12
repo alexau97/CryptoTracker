@@ -48,7 +48,22 @@ function signOut() {
 function compareCoins(){
 	var leftCoin = document.getElementById("leftdd").value;
 	var rightCoin = document.getElementById("rightdd").value;
-	console.log(leftCoin, rightCoin);
+	for(var i = 0; i < fullCoinData.length; i++){
+		console.log('loading...')
+		if(leftCoin === fullCoinData[i].id){
+			leftCoinData = fullCoinData[i];
+			break;
+		}
+	}
+		for(var i = 0; i < fullCoinData.length; i++){
+		console.log('loading...')
+		if(rightCoin === fullCoinData[i].id){
+			rightCoinData = fullCoinData[i];
+			break;
+		}
+	}
+	console.log(leftCoinData);
+	console.log(rightCoinData);
 
 }
 
@@ -74,6 +89,7 @@ class Compare extends React.Component {
 	}
 
 	setArray(data){
+		fullCoinData = data;
 		for (var i = 0; i < data.length; i++){
 			coinArray.push(data[i].name);
 		}
