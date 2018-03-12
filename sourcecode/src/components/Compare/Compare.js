@@ -10,7 +10,6 @@ var coinArray = []
 var leftCoinData = []
 var rightCoinData = []
 var fullCoinData = []
-var magic = null;
 
 if(localStorage.getItem("favorites") == "" || localStorage.getItem("favorites") == null) {
   var favArray = [] 
@@ -50,6 +49,7 @@ function compareCoins(){
 	var leftCoin = document.getElementById("leftdd").value;
 	var rightCoin = document.getElementById("rightdd").value;
 	console.log(leftCoin, rightCoin);
+
 }
 
 
@@ -97,6 +97,11 @@ class Compare extends React.Component {
 						<button onClick={toHome} className={classes.nav_button}>
 							Home
 						</button>
+
+						<button className={classes.nav_button}>
+							Compare
+						</button>
+
 
 						<button onClick={toAccount} className={classes.nav_button}>
 							Account 
