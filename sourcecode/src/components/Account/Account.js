@@ -46,6 +46,13 @@ function toHome() {
   window.location.reload();
 }
 
+function toCompare() {
+    //localStorage.setItem("favorites", JSON.stringify(favs));
+    //window.location.reload();
+  history.push('/compare');
+  window.location.reload();
+}
+
 function signOut() {
     Auth.logOut();
     localStorage.clear();
@@ -124,6 +131,10 @@ class Account extends React.Component {
             <nav className={classes.navigation}>
               <button onClick={toHome} className={classes.nav_button}>
                 Home
+              </button>
+
+              <button onClick={toCompare} className={classes.nav_button}>
+                Compare
               </button>
 
               <button className={classes.nav_button}>
