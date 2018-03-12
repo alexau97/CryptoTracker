@@ -176,6 +176,10 @@
   position: right;
 }
 
+.dropdownmenu{
+  text-align: center;
+}
+
 .column1{
   float: left;
   width: 25%;

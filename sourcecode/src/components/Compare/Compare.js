@@ -183,7 +183,7 @@ class Compare extends React.Component {
 					</nav>
 				</header>
 
-			<div>
+			<div className={classes.dropdownmenu}>
 				<select id="leftdd">
 					<option value="bitcoin">Bitcoin</option>
 					<option value="ethereum">Ethereum</option>
@@ -288,7 +288,7 @@ class Compare extends React.Component {
 				</select>
 			</div>
 
-			<div>
+			<div className={classes.dropdownmenu}>
 				<select id="rightdd">
 					<option value="bitcoin">Bitcoin</option>
 					<option value="ethereum">Ethereum</option>
@@ -393,7 +393,10 @@ class Compare extends React.Component {
 				</select>
 			</div>
 			<br/>
-			<button onClick={compareCoins}>Compare</button>
+
+			<center>
+				<button onClick={compareCoins}>Compare</button>
+			</center>
 
 			<br/>
 			<br/>
