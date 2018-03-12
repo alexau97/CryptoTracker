@@ -395,7 +395,9 @@ class Compare extends React.Component {
 			<br/>
 
 			<center>
-				<button onClick={compareCoins}>Compare</button>
+				<button onClick={compareCoins} className={classes.nav_button2}>
+					Compare 
+				</button>
 			</center>
 
 			<br/>
