@@ -65,6 +65,60 @@ function compareCoins(){
 	console.log(leftCoinData);
 	console.log(rightCoinData);
 
+	var leftName = leftCoinData.name;
+	var leftPrice = leftCoinData.price_usd;
+	var leftMarketCap = leftCoinData.market_cap_usd;
+	var leftAvailableSupply = leftCoinData.available_supply;
+	var leftTotalSupply = leftCoinData.total_supply;
+	var leftPercentChange_1h = leftCoinData.percent_change_1h;
+	var leftPercentChange_24h = leftCoinData.percent_change_24h;
+	var leftPercentChange_7d = leftCoinData.percent_change_7d;
+
+	var rightName = rightCoinData.name;
+	var rightPrice = rightCoinData.price_usd;
+	var rightMarketCap = rightCoinData.market_cap_usd;
+	var rightAvailableSupply = rightCoinData.available_supply;
+	var rightTotalSupply = rightCoinData.total_supply;
+	var rightPercentChange_1h = rightCoinData.percent_change_1h;
+	var rightPercentChange_24h = rightCoinData.percent_change_24h;
+	var rightPercentChange_7d = rightCoinData.percent_change_7d;
+
+	document.getElementById("leftlabel1").innerHTML = "Name";
+	document.getElementById("leftlabel2").innerHTML = "Price(USD)";
+	document.getElementById("leftlabel3").innerHTML = "Market Cap";
+	document.getElementById("leftlabel4").innerHTML = "Available Supply";
+	document.getElementById("leftlabel5").innerHTML = "Total Supply";
+	document.getElementById("leftlabel6").innerHTML = "% Change in Last Hour";
+	document.getElementById("leftlabel7").innerHTML = "% Change in Last Day";
+	document.getElementById("leftlabel8").innerHTML = "% Change in Last Week";
+
+	document.getElementById("leftvar1").innerHTML = leftName;
+	document.getElementById("leftvar2").innerHTML = leftPrice;
+	document.getElementById("leftvar3").innerHTML = leftMarketCap;
+	document.getElementById("leftvar4").innerHTML = leftAvailableSupply;
+	document.getElementById("leftvar5").innerHTML = leftTotalSupply;
+	document.getElementById("leftvar6").innerHTML = leftPercentChange_1h;
+	document.getElementById("leftvar7").innerHTML = leftPercentChange_24h;
+	document.getElementById("leftvar8").innerHTML = leftPercentChange_7d;
+
+	document.getElementById("rightvar1").innerHTML = rightName;
+	document.getElementById("rightvar2").innerHTML = rightPrice;
+	document.getElementById("rightvar3").innerHTML = rightMarketCap;
+	document.getElementById("rightvar4").innerHTML = rightAvailableSupply;
+	document.getElementById("rightvar5").innerHTML = rightTotalSupply;
+	document.getElementById("rightvar6").innerHTML = rightPercentChange_1h;
+	document.getElementById("rightvar7").innerHTML = rightPercentChange_24h;
+	document.getElementById("rightvar8").innerHTML = rightPercentChange_7d;
+
+	document.getElementById("rightlabel1").innerHTML = "Name";
+	document.getElementById("rightlabel2").innerHTML = "Price(USD)";
+	document.getElementById("rightlabel3").innerHTML = "Market Cap";
+	document.getElementById("rightlabel4").innerHTML = "Available Supply";
+	document.getElementById("rightlabel5").innerHTML = "Total Supply";
+	document.getElementById("rightlabel6").innerHTML = "% Change in Last Hour";
+	document.getElementById("rightlabel7").innerHTML = "% Change in Last Day";
+	document.getElementById("rightlabel8").innerHTML = "% Change in Last Week";
+
 }
 
 
@@ -340,6 +394,53 @@ class Compare extends React.Component {
 			</div>
 			<br/>
 			<button onClick={compareCoins}>Compare</button>
+
+			<br/>
+			<br/>
+
+			<div className={classes.row}>
+				<div className={classes.column1}>
+					<p id="leftlabel1"></p>
+					<p id="leftlabel2"></p>
+					<p id="leftlabel3"></p>
+					<p id="leftlabel4"></p>
+					<p id="leftlabel5"></p>
+					<p id="leftlabel6"></p>
+					<p id="leftlabel7"></p>
+					<p id="leftlabel8"></p>
+				</div>
+				<div className={classes.midcolumn}>
+					<p id="leftvar1"></p>
+					<p id="leftvar2"></p>
+					<p id="leftvar3"></p>
+					<p id="leftvar4"></p>
+					<p id="leftvar5"></p>
+					<p id="leftvar6"></p>
+					<p id="leftvar7"></p>
+					<p id="leftvar8"></p>
+				</div>
+				<div className={classes.midcolumn}>
+					<p id="rightvar1"></p>
+					<p id="rightvar2"></p>
+					<p id="rightvar3"></p>
+					<p id="rightvar4"></p>
+					<p id="rightvar5"></p>
+					<p id="rightvar6"></p>
+					<p id="rightvar7"></p>
+					<p id="rightvar8"></p>
+				</div>
+				<div className={classes.column4}>
+					<p id="rightlabel1"></p>
+					<p id="rightlabel2"></p>
+					<p id="rightlabel3"></p>
+					<p id="rightlabel4"></p>
+					<p id="rightlabel5"></p>
+					<p id="rightlabel6"></p>
+					<p id="rightlabel7"></p>
+					<p id="rightlabel8"></p>
+				</div>
+			</div>
+
 		</div>
 
 		)

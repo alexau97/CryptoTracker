@@ -175,3 +175,27 @@
   width: 85%;
   position: right;
 }
+
+.column1{
+  float: left;
+  width: 25%;
+  text-align: right;
+}
+
+.midcolumn{
+  float: left;
+  width: 25%;
+  text-align: center;
+}
+
+.column4{
+  float: left;
+  width: 25%;
+  text-align: left;
+}
+
+.row:after{
+  content:"";
+  display: table;
+  clear: both;
+}
