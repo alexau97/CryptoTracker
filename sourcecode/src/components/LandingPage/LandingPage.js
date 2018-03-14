@@ -50,6 +50,9 @@ class LandingPage extends React.Component {
               CryptoTracker
             </h2>
           </header>
+            <h3 className={classes.tagline}>
+              Personalize your Crytocurrency Management
+            </h3>
           <p className={classes.description}>
             {this.state.coin} {this.state.price}
           </p>
@@ -66,7 +69,7 @@ class LandingPage extends React.Component {
             </h3>
             <p className={classes.about_description}>
               This is a project done by a group of students from University of California, Santa Cruz. This is a web application that is created using JavaScript, React, and Google Firebase. 
-              The purpose for this web application is to track and save prices of specific Crytocurrencies.
+              The purpose of this web application is to track and save prices of specific Crytocurrencies.
             </p>
             <p className={classes.copyright}>
               Copyright 2018
