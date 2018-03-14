@@ -130,7 +130,7 @@ class Account extends React.Component {
         <div className={classes.landingPage}>
           <header className={classes.header}>
             <h2 className={classes.title}>
-              CryptoTracker
+              Account
             </h2>
 
             <nav className={classes.navigation}>
