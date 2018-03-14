@@ -56,11 +56,8 @@ class LandingPage extends React.Component {
           <br/>
           <br/>
           <br/>
-          <SignUp />
           <br/>
-          <h1>or</h1>
           <br/>
-          <h1>Sign In with Google Account</h1>
           <SignIn />
 
           <div className={classes.about}>

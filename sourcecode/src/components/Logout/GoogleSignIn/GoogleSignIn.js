@@ -50,6 +50,16 @@ class GoogleSignIn extends React.Component {
       console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
       localStorage.setItem("Email", profile.getEmail());
       this.props.getUser(profile.getId(), profile.getName(), profile.getEmail())
+      console.log('before log in');
+      console.log(firebase);
+      firebase.database().ref('/users/'+profile.getId()).set({
+        email: profile.x(),
+        username: profile.getName(),
+        favorites: "",
+      }).then(() => {
+        console.log('write worked')
+      })
+      console.log('after log in');
   }
 
   renderContent() {
