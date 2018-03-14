@@ -6,6 +6,7 @@ import Auth from '../Login/Auth'
 import obj from '../Login/GoogleSignIn/GoogleSignIn'
 import axios from 'axios';
 
+
 var coinArray = []
 var priceArray = []
 var coinToPrice = {}

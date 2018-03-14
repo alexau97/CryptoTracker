@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import classes from './GoogleSignIn.css';
 import Auth from '../Auth'
 
+import * as firebase from 'firebase';
+
 function getGapi(callback){
   var auth2 = gapi.auth2.getAuthInstance();
 
@@ -40,16 +42,28 @@ class GoogleSignIn extends React.Component {
 
   onSignIn(googleUser) {
     localStorage.setItem("flag", "1");
-      var profile = googleUser.getBasicProfile();
-      console.log('ID: ' + profile.getId()); 
-      localStorage.setItem("ID", profile.getId());
-      console.log('Name: ' + profile.getName());
-      localStorage.setItem("Name", profile.getName());
-      console.log('Image URL: ' + profile.getImageUrl());
-      localStorage.setItem("ImageURL", profile.getImageUrl());
-      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-      localStorage.setItem("Email", profile.getEmail());
-      this.props.getUser(profile.getId(), profile.getName(), profile.getEmail())
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); 
+    localStorage.setItem("ID", profile.getId());
+    console.log('Name: ' + profile.getName());
+    localStorage.setItem("Name", profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    localStorage.setItem("ImageURL", profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    localStorage.setItem("Email", profile.getEmail());
+    this.props.getUser(profile.getId(), profile.getName(), profile.getEmail())
+
+    console.log('before log in');
+    console.log(firebase);
+    firebase.database().ref('/users/'+profile.getId()).set({
+      email: profile.x(),
+      username: profile.getName(),
+    }).then(() => {
+      console.log('write worked')
+    })
+    console.log('after log in');
+
+    // change page
   }
 
   renderContent() {
