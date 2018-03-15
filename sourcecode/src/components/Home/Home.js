@@ -9,6 +9,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 //this.state.price = ['10,000.05', '942.55', '1.45', ...]
 import PrettyCheckbox from 'pretty-checkbox-vue';
 //Vue.use(PrettyCheckbox);
+import * as firebase from 'firebase';
 
 var coinArray = []
 var priceArray = []
@@ -17,6 +18,18 @@ var favMap = {}
 var coinToPrice = {}
 var indexToCoin = {}
 var coinToIndex = {}
+
+var user = localStorage.getItem("ID");
+function writeUserData(userId, fav) {
+  firebase.database().ref('users/' + userId).set({
+  username: localStorage.getItem("Email"),
+  name: localStorage.getItem("Name"), 
+  favorites: fav
+
+});
+}
+
+
 if(localStorage.getItem("favorites") == "" || localStorage.getItem("favorites") == null) {
   var favArray = [] 
   //var checkArray = []
@@ -31,8 +44,11 @@ var space = " "
 //   console.log(favArray[b]);
 // }
 
+
+
 function toAccount() {
   localStorage.setItem("favorites", JSON.stringify(favArray));
+  writeUserData(user, JSON.stringify(favArray));
   //localStorage.setItem("checked", JSON.stringify(checkArray));
     //window.location.reload();
   history.push('/account');
@@ -66,6 +82,7 @@ function handleFormSubmit(e) {
     //console.log(coinToIndex[e.target.getAttribute('label')]);
     console.log(favArray[coinToIndex[e.target.getAttribute('label')]]);
     localStorage.setItem("favorites", JSON.stringify(favArray));
+    writeUserData(user, JSON.stringify(favArray));
     window.location.reload();
    // e.checked = true;
   }
@@ -77,6 +94,7 @@ function handleFormSubmit(e) {
     //console.log(coinToIndex[e.target.getAttribute('label')]);
     console.log(favArray[coinToIndex[e.target.getAttribute('label')]]);
     localStorage.setItem("favorites", JSON.stringify(favArray));
+    writeUserData(user, JSON.stringify(favArray));
     window.location.reload();
 
     // favMap[e.target.getAttribute('label')] = false;
@@ -86,6 +104,7 @@ function handleFormSubmit(e) {
     //favs[e.target.getAttribute('label')] = false;
   //console.log(favs[e.target.getAttribute('label')]);
   localStorage.setItem("favorites", JSON.stringify(favArray));
+  writeUserData(user, JSON.stringify(favArray));
   window.location.reload();
 }
 function displayCheck() {

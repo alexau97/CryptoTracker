@@ -23,4 +23,6 @@ export {
   db,auth
 }
 
+export const fb = config;    
+
 

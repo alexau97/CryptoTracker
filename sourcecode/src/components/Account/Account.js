@@ -6,6 +6,8 @@ import Auth from '../Login/Auth'
 import obj from '../Login/GoogleSignIn/GoogleSignIn'
 import axios from 'axios';
 
+import * as firebase from 'firebase';
+
 
 var coinArray = []
 var priceArray = []
@@ -22,6 +24,15 @@ var id = localStorage.getItem("ID");
 //if(localStorage.getItem("favorites") != null) {
 console.log(localStorage.getItem("favorites"));
 //}
+
+var user = localStorage.getItem("ID");
+function writeUserData(userId, fav) {
+  firebase.database().ref('users/' + userId).set({
+  username: localStorage.getItem("Email"),
+  name: localStorage.getItem("Name"),
+  favorites: fav
+  });
+}
 
 function displayFavorites() {
   // if(localStorage.getItem("favorites") != null) {
@@ -72,6 +83,7 @@ function DeleteFav(e){
     if(x == e.target.getAttribute('label')) {
       tempFav[x] = false; 
       localStorage.setItem("favorites", JSON.stringify(tempFav));
+      writeUserData(user, JSON.stringify(tempFav));
       window.location.reload();
     }
   }

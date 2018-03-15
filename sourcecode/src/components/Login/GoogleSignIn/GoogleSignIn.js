@@ -56,7 +56,7 @@ class GoogleSignIn extends React.Component {
     console.log('before log in');
     console.log(firebase);
     firebase.database().ref('/users/'+profile.getId()).set({
-      email: profile.x(),
+      email: profile.getEmail(),
       username: profile.getName(),
       favorites: "",
     }).then(() => {
